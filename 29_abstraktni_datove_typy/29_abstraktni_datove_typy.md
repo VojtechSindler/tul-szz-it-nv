@@ -26,7 +26,6 @@ Nejdůležitější vlastnosti abstraktního typu dat jsou:
 Pokud je ADT programován objektově, jsou většinou tyto vlastnosti splněny.
 
 ## Operace
-Na abstraktním datovém typu rozlišujeme tři druhy operací: **konstruktor**, **selektor** a **modifikátor**. Operace, která ze zadaných parametrů vytváří novou hodnotu abstraktního datového typu, se nazývá konstruktor. Úkolem *konstruktoru* je sestavení platné vnitřní reprezentace hodnoty na základě dodaných parametrů. Operace označovaná jako *selektor* slouží k získání hodnot, které tvoří složky nebo vlastnosti konkrétní hodnoty abstraktního datového typu, a konečně operace typu *modifikátor* provádí změnu hodnoty datového typu.
 
 - **konstruktor** zodpovídá za správnou inicializaci a sestavené platné reprezentace datového typu na základě dodaných parametrů
 - **selektor** slouží k výběru dat
@@ -131,9 +130,11 @@ Vlastnosti:
 Procházení stromem:
 
 1. Průchod do šířky
+
   Projdou se nejprve všechny uzly stromu v jedné hloubce a až poté se pokračuje do další hladiny, kde se opět projdou všechny uzly v dané hloubce.
 
 2. Průchod do hloubky
+
   Procházení začíná v kořeni stromu a postupuje se po potomcích uzlu. Procházení končí, když už v žádné větvi není nenavšívený potomek.
 
 
@@ -149,6 +150,8 @@ Procházení stromem:
     - projdi levý podstrom
     - projdi pravý podstrom
     - proveď akci
+
+#### Příklad průchodu stromem
 
 ![Ukázka stromu](29_strom_preorder_inorder_postorder.png)
 
