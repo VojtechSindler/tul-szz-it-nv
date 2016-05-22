@@ -6,14 +6,17 @@
 - matematický model nezávislý na konkrétní implementaci
 - popisuje chování (možné operace) z hlediska uživatele dat
 - není závislý na implementaci v konkrétním programovacím jazyce
-- často se u nich uvádí časová či paměťová složitost
+- často se u nich uvádí časová či paměťová složitost (důležité z hlediska efektivního návrhu algoritmu)
 - uživatel používá pouze obecné rozhraní ADT a konkrétní implementace mu zůstává skryta
 - ADT může mít více různých implementací, např. seznam lze implementovat jako pole nebo jako spojový seznam
+- jazyky mají ve svých standartních knihovnách obvykle obsaženy optimalizované implementace ADT
 
 **Datové struktury**
 
 - narozdíl od ADT se jedná o konkrétní reprezentaci dat
 - definuje je ten, kdo je implementuje
+
+*Datový typ* určuje rozsah hodnot a definované operace pro proměnou daného typu.
 
 ## Vlastnosti
 Nejdůležitější vlastnosti abstraktního typu dat jsou:
@@ -161,10 +164,13 @@ Procházení stromem:
 - Procházení do šířky (po vrstvách) Level-order: F, B, G, A, D, I, C, E, H
 
 ### Halda
-Halda je v informatice stromová datová struktura splňující tzv. vlastnost haldy: pokud je B potomek A, pak x(A) >= x(B). To znamená, že v kořenu stromu je vždy prvek s nejvyšším klíčem (klíč udává funkce x). Taková halda se pak někdy označuje jako max heap (heap je v angličtině halda), halda s reverzním pořadím prvků se analogicky nazývá min heap. Díky této vlastnosti se haldy často používají na implementaci prioritní fronty. Efektivita operací s haldou je klíčová pro mnoho algoritmů.
 
+- datová struktura splňující vlastnost haldy, tj. pokud ![B](https://latex.codecogs.com/gif.latex?B) je potomek ![A](https://latex.codecogs.com/gif.latex?A), tak
+  - ![x(B) \geq x(A)](https://latex.codecogs.com/gif.latex?x%28B%29%20%5Cgeq%20x%28A%29) pro *max heap* nebo
+  - ![x(B) \leq x(A)](https://latex.codecogs.com/gif.latex?x%28B%29%20%5Cleq%20x%28A%29) pro *min heap*
+- často se používá pro implementaci prioritní fronty
+- efektivita operací haldy je klíčová pro mnoho algoritmů
 - Vlastnost tvaru – strom je buď perfektně vyvážený binární strom, nebo pokud je poslední úroveň stromu nekompletní, uzly plní strom zleva doprava
-- Vlastnost haldy - každý uzel je větší nebo roven všem svým potomkům
 
 ![Binární minimální halda](29_binarni_min_halda.png)
 
@@ -183,22 +189,18 @@ Operace s haldou:
 
 Složitost operací:
 
-- Stavba haldy - O(n)
-- Získání hodnoty kořene - O(1)
-- Vyjmutí kořene - O(log n)
-- Vložení prvku - O(log n)
-- Odstranění prvku - O(log n)
-- Sloučení 2 hald - O(n1 + n2)
+- Stavba haldy - ![\mathcal{O}(n)](https://latex.codecogs.com/gif.latex?%5Cmathcal%7BO%7D%28n%29)
+- Získání hodnoty kořene - ![\mathcal{O}(1)](https://latex.codecogs.com/gif.latex?%5Cmathcal%7BO%7D%281%29)
+- Vložení/odstranění/nalezení prvku - ![\mathcal{O}(\log_2 n)](https://latex.codecogs.com/gif.latex?%5Cmathcal%7BO%7D%28%5Clog_2%20n%29)
+- Sloučení hald - ![\mathcal{O}(n)](https://latex.codecogs.com/gif.latex?%5Cmathcal%7BO%7D%28n%29)
 
 ### Asociativní pole
-Datový typ zobrazení (map) je založen na matematickém pojmu zobrazení, které prvkům z množiny vzorů přiřazuje (nejvýše jeden) prvek z množiny obrazů. Tento datový typ se v mnoha programovacích jazycích označuje také jako asociativní pole; množina vzorů pak odpovídá datovému typu indexu pole a množina obrazů datovému typu hodnoty uložené na zadaném indexu. Proti "obyčejnému" poli nabízí asociativní pole zobecnění v tom smyslu, že typem indexu může být libovolný datový typ, nad kterým je definována alespoň operace porovnání. Z hlediska implementace to ale většinou znamená, že nemůžeme jednoduchou matematickou úpravou hodnoty indexu získat jednoznačně umístění požadovaného prvku, a je tedy nutné pro zpřístupnění prvku využít nějaké formy vyhledávání.
 
-Protože přímo z klíče nelze spočítat index nebo adresa adresu prvku v poli, je zapotřebí prvek podle klíče vyhledat. Nejpoužívanější metodou je mechanismus zvaný hašovací funkce.
+- prvkům z množiny klíčů přiřazuje nejvýše jednu hodnotu
+- různá označení
+  - mapa (Java, C++)
+  - slovník (.NET, Python)
+  - asociativní pole (Javascript, PHP)
+- v porovnání s obecným polem může být klíčem i nečíselný typ; datový typ klíče musí pouze implementovat operaci porovnání
+- z klíče nelze přímo spočítat umístění prvku v poli - používá se *hashovací funkce*
 
-Zde se to trochu míchá a různá označení se překrývají. (asociative array, hashmap, hashtable, dictonary)
-
-- "Map" is used by Java, C++
-- "Dictionary" is used by .Net, Python
-- "Associative array" is used by Javascript, PHP
-
-"Map" is the correct mathematical term, but it is avoided because it has separate meaning in functional programming. ([Stackoverflow](http://stackoverflow.com/questions/2884068/what-is-the-difference-between-a-map-and-a-dictionary))
